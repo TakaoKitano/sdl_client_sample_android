@@ -64,6 +64,9 @@
                 <action android:name="sdl.router.startservice" />
             </intent-filter>
         </receiver>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="15fb9f6a482061fc5650c930a845e590ab7919a9" />
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

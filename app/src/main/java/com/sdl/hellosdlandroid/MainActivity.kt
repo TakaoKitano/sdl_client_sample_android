@@ -5,12 +5,17 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.smartdevicelink.transport.SdlBroadcastReceiver
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Fabric.with(this, Crashlytics())
         setContentView(R.layout.activity_main)
         //If we are connected to a module we want to start our SdlService
         if (BuildConfig.TRANSPORT == "MBT") {
@@ -20,6 +25,11 @@ class MainActivity : AppCompatActivity() {
             startService(proxyIntent)
         }
     }
+
+    fun forceCrash(view: View) {
+        throw RuntimeException("This is a crash")
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
